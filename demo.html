@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<script>
+  //1.生成5个100-200的随机数，存储一个数组中
+    var a = parseInt(Math.random()*101+100);
+    var b = parseInt(Math.random()*101+100);
+    var c = parseInt(Math.random()*101+100);
+    var d = parseInt(Math.random()*101+100);
+    var e = parseInt(Math.random()*101+100);
+    var arr = [];
+    arr.push(a,b,c,d,e);
+    console.log(arr);
+  //2.//已知字符串"a-b-c-d"，转换成成a|b|c|d
+    var str = "a-b-c-d";
+    //  var str1 = str.replace(/-/g,'|');
+    //  console.log(str1);
+    console.log(str.split("-").join("|"));
+  //通过split将字符串转化成数组，然后通过join将数组拼接成字符串
+
+  //3.数组去重
+    var arr = ["a", "b", "c", "b", "a"];
+    var Arr = [];
+    for(var i = 0;i<arr.length;i++){
+      var result = Arr.indexOf(arr[i]);
+      if(result == -1){
+        Arr.push(arr[i])
+      }
+    }
+    console.log(Arr);
+
+  //4.已知：hu-cong-cong   转换成  HuCongCong
+    var str = "hu-cong-cong";
+    var result = str.split("-");
+    var a = result.join("");
+    console.log(a);
+    var b = a.replace("h","H");
+    var c = b.replace(/c/g,"C");
+    str = c;
+    console.log(str);
+
+
+  //5.已知对象 {name:"cc", age:18, desc:"很帅"} 转换成字符串"name=zs&age=18&desc=很帅"
+    var obj = {
+      name:"cc",
+      age:18,
+      desc:"很帅"
+    }
+    var arr = [];
+    for(var k in obj){
+      arr.push(k);
+      arr.push(obj[k]);
+    }
+    console.log(arr);//["name", "cc", "age", 18, "desc", "很帅"]
+    var str = "";
+    for(var i =0;i<arr.length-1;i++){
+      arr[i] = arr[i] + "=";
+    }
+    console.log(arr);
+    arr.splice(1,1,"cc&");
+    arr.splice(3,1,"18&");
+    console.log(arr);
+    str = arr.join("");
+    str = str.replace('cc','zs');
+    console.log(str);
+
+
+  //6. 已知字符串"name=zs&age=18&desc=很帅",转换成对象{name:"cc", age:18, desc:"很帅"}
+  var str = "name=zs&age=18&desc=很帅";
+  var obj = {};
+  var str = str.replace(/=/g,'&');
+  var arr = str.split("&");
+  var k ;
+  console.log(arr);
+  for(var i = 0;i<arr.length;i++){//["name", "zs", "age", "18", "desc", "很帅"]
+    if(i%2!=0){//判断对象的键值，不等于0说明是值，等于0说明是键；
+      obj[k] = arr[i];
+    }else{
+      k = arr[i];
+    }
+  }
+  obj.name = "cc";
+  console.log(obj);
+</script>
+</body>
+</html>
